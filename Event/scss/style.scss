@@ -52,7 +52,6 @@ input:focus,button:focus{
 	@font-face {
 		font-family: quote($name);
 		font-style: $style;
-		font-weight: $weight;
 		src: $src;
 	}
 }
@@ -133,7 +132,6 @@ h1,h2,h3,h4,h5{
 	line-height: 45px;
 	text-decoration: none;
 	padding: 0 15px;
-	font-weight: bold;
 	font-family: "circularbold";
 	@include ease-bezier(0.6s,cubic-bezier(.19,1,.22,1));
 	&.normal{
@@ -508,6 +506,7 @@ main{
 		box-sizing: border-box;
 		.section{
 			float: left;
+			box-sizing: border-box;
 			@media screen and (max-width: $break-small) {
 				&.half,&.one--third,&.two--third,&.three--fifth{
 					width: 100% !important;
@@ -515,6 +514,7 @@ main{
 				}
 		  }
 			&.half{
+				float: left;
 				width: 50%;
 				padding: 0 40px;
 			}
@@ -601,11 +601,10 @@ main{
 							pointer-events: none;
 							&.title{
 								font-size: 1.2em;
-								font-weight: bold;
+								font-family: "circularbold";
 							}
 							&.subtitle{
 								font-size: .9em;
-								font-weight: 300;
 							}
 							&.info{
 								position: absolute;
@@ -621,8 +620,12 @@ main{
 		&#about{
 			position: relative;
 			padding: 90px 0;
+			header{
+				margin-bottom: 40px;
+			}
 			img{
 				float: left;
+				width: calc(100% * (2/4) - 40px);
 				@media screen and (max-width: $break-small) {
 					width: 100%;
 					margin-bottom: 40px;
@@ -648,7 +651,7 @@ main{
 				width: calc(100% + 300px);
 				height: calc(100% + 50px);
 				z-index: -9999;
-				@include transform(rotate(-5deg));
+				@include transform(rotate(-3deg));
 			}
 		}
 		&.detail{
@@ -886,17 +889,23 @@ main{
 			}
 			p{
 				margin-top: 15px;
-				font-weight: normal;
 				line-height: 1.5em;
+			}
+			a{
+				clear: both;
+				float: left;
+				margin-top: 40px;
 			}
 		}
 
-		&#accomdations{
+		&#unlock{
 			position: relative;
-			header{
-				margin-bottom: 15px;
-				h1{
-					margin-bottom: 20px;
+			.section{
+				header{
+					margin-bottom: 30px;
+					h1{
+						margin-bottom: 20px;
+					}
 				}
 			}
 			.heading-3{
@@ -910,6 +919,12 @@ main{
 			.accomdations{
 				width: calc(100% * (1/3) - 40px);
 				padding-left: 70px;
+				header{
+					margin-bottom: 15px !important;
+					h1{
+						margin-bottom: 20px;
+					}
+				}
 				p{
 					opacity: 1;
 				}
@@ -938,19 +953,77 @@ main{
 				padding-left: 0 !important;
 				color: $black;
 				position: relative;
+				a{
+					margin-top: 20px;
+					margin-bottom: 40px;
+				}
 				&::before{
 					z-index: -9999;
 					content: "";
 					position: absolute;
 					width: 100vw;
 					height: calc(100% + 120px);
-					right: 0px;
+					right: -60px;
 					top: -60px;
 					background-color: $white;
-					@media screen and (max-width: $break-small) {
-						width: 100vw !important;
-						right: -20px;
+					@media screen and (max-width: $break-large) {
+						right: -20px !important;
 				  }
+				}
+			}
+		}
+
+		&#accomdations{
+			position: relative;
+			header{
+				margin-bottom: 40px;
+			}
+			.section{
+				header{
+					margin-bottom: 30px;
+					h1{
+						margin-bottom: 20px;
+					}
+				}
+			}
+			.heading-3{
+				width: 100%;
+			}
+			p{
+				opacity: .7;
+				line-height: 28px;
+				margin-bottom: 30px;
+			}
+			.section.half{
+				padding-left: 0px;
+				header{
+					margin-bottom: 15px !important;
+					h1{
+						margin-bottom: 20px;
+					}
+				}
+				p{
+					opacity: 1;
+				}
+				@media screen and (max-width: $break-small) {
+					width: 100%!important;
+					padding: 0 !important;
+					margin-top: 150px;
+			  }
+				nav{
+					ul{
+						padding: 0;
+						li{
+							display: block;
+							float: left;
+							width: 100%;
+							a{
+								padding: 0;
+								height: 35px;
+								line-height: 35px;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -978,7 +1051,7 @@ footer{
 		margin-top: 140px;
 		box-sizing: border-box;
 		padding: 10px;
-		background-color: $black;
+		background-color: #0C1523;
 		float: left;
 		width: 100%;
 		color: $white;
@@ -1051,12 +1124,10 @@ footer{
 			}
 			h4{
 				font-size: 1em;
-				font-weight: 300;
 			}
 			p{
 				margin-top: 20px;
 				font-size: .9em;
-				font-weight: 300;
 				line-height: 20px;
 				color: $blue;
 			}
